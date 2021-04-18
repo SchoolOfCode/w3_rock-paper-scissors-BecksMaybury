@@ -2,12 +2,17 @@ let gamesPlayed = 0;
 let playerWinsScore = 0;
 let playerLossesScore = 0;
 let playerDrawsScore = 0;
+let playerTotalScore = 0;
 let computerWinsScore = 0;
 let computerLossesScore = 0;
 let computerDrawsScore = 0;
+let computerTotalScore = 0;
 let computerMovesArray = ["rock", "paper", "scissors"];
 let i;
 let keepPlaying=true;
+let result;
+let overallResult;
+let userName = prompt ("Enter your username");
 
 while (keepPlaying===true) {
     let computerMove;
@@ -24,18 +29,22 @@ while (keepPlaying===true) {
     }
     generateComputerMove(i);
 
+    // CALCULATING SCORES
+
     function computerWinsGame () {
-        computerGameScore++;
+        computerGameScore=1;
+        playerGameScore=0;
+        computerTotalScore++;
         computerWinsScore++;
-        playerGameScore--;
         playerLossesScore++;
     }
 
     function playerWinsGame () {
-        computerGameScore--;
+        playerGameScore=1;
+        computerGameScore=0;
+        playerWinsScore++;  
+        playerTotalScore++;      
         computerLossesScore++;
-        playerGameScore++;
-        playerWinsScore++;        
     }
     function drawGame () {
         computerDrawsScore++;
@@ -70,24 +79,35 @@ while (keepPlaying===true) {
     if (computerMove === "scissors" && playerMove === "scissors"){
         drawGame();
     }
-    function getWinner (computerMove, playerMove) {
+
+    function getGameWinner (computerGameScore, playerGameScore) {
         if (computerGameScore > playerGameScore) {
-            return getWinner--;
+            return "Computer wins this game";
         } else if (playerGameScore > computerGameScore) {
-            return getWinner ++;
+            return "Player wins this game";
         } else {
-            return getWinner = 0;
+            return "Draw";
         }
     }
+    function getWinner (computerTotalScore, playerTotalScore) {
+        if (computerTotalScore > playerTotalScore) {
+            return "Computer wins";
+        } else if (playerTotalScore > computerTotalScore) {
+            return "Player wins";
+        } else {
+            return "Draw";
+        }
+    }
+
+    console.log (`Computer chose ${computerMove}, player chose ${playerMove}, scores are ${computerGameScore} v ${playerGameScore}`);
     
     // CALCULATING RESULTS 
-    
-    let result = getWinner (computerMove, playerMove);
-    console.log (`Computer chose ${computerMove}, player chose ${playerMove}, scores are ${computerGameScore} v ${playerGameScore}`);
+    result = getGameWinner (computerGameScore, playerGameScore);
+    overallResult = getWinner (computerTotalScore, playerTotalScore);
     gamesPlayed++;
     console.log (gamesPlayed);
-    console.log (`You: Won:${playerWinsScore} Drawn:${playerDrawsScore} Lost:${playerLossesScore} \r COMPUTER: Won:${computerWinsScore} Drawn:${computerDrawsScore} Lost:${computerLossesScore}`);
-    alert (`You score: ${result}! Total Scores: You = ${playerGameScore} Computer = ${computerGameScore}`);
-    keepPlaying = confirm ("Carry on playing?");
+    alert (`This game: ${result} \r \r TOTALS \r You: Won:${playerWinsScore} Drawn:${playerDrawsScore} Lost:${playerLossesScore} \r COMPUTER: Won:${computerWinsScore} Drawn:${computerDrawsScore} Lost:${computerLossesScore}`);
+  //  alert (`You score: ${playerGameScore}! Total Scores: You = ${playerGameScore} Computer = ${computerGameScore}`);
+    keepPlaying = confirm (`Carry on playing?`);
 }
-alert ("GAME OVER");
+alert (`${overallResult} \r GAME OVER`);

@@ -1,117 +1,117 @@
-Zero out scoreboard
+## Zero out scoreboard
 * set gamesPlayed to 0
-* set player1RoundScore to 0
-* set player1WinsScore to 0
-* set player1LossesScore to 0
-* set player1DrawsScore to 0
-* set player1GamesWonScore to 0
-* set player2RoundScore to 0
-* set player2WinsScore to 0
-* set player2LossesScore to 0
-* set player2DrawsScore to 0
-* set player2GamesWonScore to 0
+* set playerGameScore to 0
+* set playerWinsScore to 0
+* set playerLossesScore to 0
+* set playerDrawsScore to 0
+* set playerTotalScore to 0
+* set computerGameScore to 0
+* set computerWinsScore to 0
+* set computerLossesScore to 0
+* set computerDrawsScore to 0
+* set computerGamesWonScore to 0
 
-START GAME
+# START GAME
 
-Ask if they are ready to play
+## Ask if they are ready to play
 * yes - go to get username
 * no - go back to home screen
 
-Get username
+## Get username
 * ask user to input name (give validation message)
 * check is valid (<= 10 characters, only starting with letters>)
 * store username
 * display username (use initial capital)
 
-Display scoreboard
-* display player1RoundScore
-* display player1WinsScore
-* display player1LossesScore
-* display player1DrawsScore
-* display player1GamesWonScore
-* display player2RoundScore
-* display player2WinsScore
-* display player2LossesScore
-* display player2DrawsScore
-* display player2GamesWonScore
+## Display scoreboard
 
-Get user to start game
+* display playerWinsScore
+* display playerLossesScore
+* display playerDrawsScore
+* display playerGamesScore
+* display playerTotalScore
+* display computerWinsScore
+* display computerLossesScore
+* display computerDrawsScore
+* display computerGameScore
+* display computerTotalScore
+
+## Get user to start game
 * press button to start
 
+# PLAY GAME
 
-Player1 choose move
-* player1 to choose rock, paper or scissors
+## Player to choose move
+* player to choose rock, paper or scissors
 * store choice
 
-Player2 choose move
-* player2 generate move
+## Computer move
+* generate move
 * store move
 
-Compare moves
-IF COMPUTER ROCK && PLAYER  SCISSOR -1 TO PLAYER +1 COMPUTER
-* player1RoundScore -1
-* player2RoundScore +1
-* player1LossesScore +1
-* player2WinsScore +1
-* display player2 wins (message)
-IF COMPUTER ROCK && PLAYER  PAPER +1 TO PLAYER -1 COMPUTER
-* player1RoundScore +1
-* player2RoundScore -1
-* player1WinsScore +1
-* player2LossesScore +1
-* display player1 wins (message)
-IF COMPUTER ROCK && PLAYER ROCK DRAW 
-* player1DrawsScore +1
-* player2DrawsScore +1
+## Compare moves
+### IF COMPUTER ROCK && PLAYER  SCISSOR -1 TO PLAYER +1 COMPUTER
+* playerGameScore -1
+* computerGameScore +1
+* playerLossesScore +1
+* computerWinsScore +1
+* display computer wins (message)
+### IF COMPUTER ROCK && PLAYER  PAPER +1 TO PLAYER -1 COMPUTER
+* playerGameScore +1
+* computerGameScore -1
+* playerWinsScore +1
+* computerLossesScore +1
+* display player wins (message)
+### IF COMPUTER ROCK && PLAYER ROCK DRAW 
+* playerDrawsScore +1
+* computerDrawsScore +1
 * display draw (message)
-IF COMPUTER SCISSOR && PLAYER ROCK  -1 TO PLAYER +1 COMPUTER
-* player1RoundScore -1
-* player2RoundScore +1
-* player1LossesScore +1
-* player2WinsScore +1
-* display player2 wins (message)
-IF COMPUTER SCISSOR &&PLAYER PAPER +1 TO PLAYER -1 COMPUTER
-* player1RoundScore +1
-* player2RoundScore -1
-* player1WinsScore +1
-* player2LossesScore +1
-* display player1 wins (message)
-IF COMPUTER SCISSOR && PLAYER SCISSOR DRAW
-* player1DrawsScore +1
-* player2DrawsScore +1
+### IF COMPUTER SCISSOR && PLAYER ROCK  -1 TO PLAYER +1 COMPUTER
+* playerGameScore -1
+* computerGameScore +1
+* playerLossesScore +1
+* computerWinsScore +1
+* display computer wins (message)
+### IF COMPUTER SCISSOR &&PLAYER PAPER +1 TO PLAYER -1 COMPUTER
+* playerGameScore +1
+* computerGameScore -1
+* playerWinsScore +1
+* computerLossesScore +1
+* display player wins (message)
+### IF COMPUTER SCISSOR && PLAYER SCISSOR DRAW
+* playerDrawsScore +1
+* computerDrawsScore +1
 * display draw (message)
-IF COMPUTER PAPER && PLAYER SCISSOR +1 TO PLAYER -1 COMPUTER
-* player1RoundScore +1
-* player2RoundScore -1
-* player1WinsScore +1
-* player2LossesScore +1
-* display player1 wins (message)
-IF COMPUTER PAPER&& PLAYER ROCK-1 PLAYER +1 COMPUTER
-* player1RoundScore -1
-* player2RoundScore +1
-* player1LossesScore +1
-* player2WinsScore +1
-* display player2 wins (message)
-IF COMPUTER PAPER&& PLAYER PAPER DRAW
-* player1DrawsScore +1
-* player2DrawsScore +1
+### IF COMPUTER PAPER && PLAYER SCISSOR +1 TO PLAYER -1 COMPUTER
+* playerGameScore +1
+* computerGameScore -1
+* playerWinsScore +1
+* computerLossesScore +1
+* display player wins (message)
+### IF COMPUTER PAPER&& PLAYER ROCK-1 PLAYER +1 COMPUTER
+* playerGameScore -1
+* computerGameScore +1
+* playerLossesScore +1
+* computerWinsScore +1
+* display computer wins (message)
+### IF COMPUTER PAPER&& PLAYER PAPER DRAW
+* playerDrawsScore +1
+* computerDrawsScore +1
 * display draw (message)
 
-Repeat x 3 = 1 game
-
-Display game result
-* if player1RoundScore > 2 
-- show player1 has won
-- set player1GameScore + 1
-* if player2RoundScore > 2 
-- show player2 has won
-- set player2GameScore + 1
+## Display game result
+* if playerGameScore > 2 
+- show player has won
+- set playerGameScore + 1
+* if computerGameScore > 2 
+- show computer has won
+- set computerGameScore + 1
 
 
-Display scoreboard
+## Display scoreboard
 * 
 
-Check if Player1 wants to continue
+## Check if player wants to continue
 * if yes, repeat steps [42 - 112]
 * if no, display scoreBoard 
 * exit

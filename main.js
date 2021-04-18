@@ -1,3 +1,5 @@
+//INITIALISE VARIABLES
+
 let gamesPlayed = 0;
 let playerWinsScore = 0;
 let playerLossesScore = 0;
@@ -12,7 +14,6 @@ let i;
 let keepPlaying=true;
 let result;
 let overallResult;
-let userName = prompt ("Enter your username");
 
 while (keepPlaying===true) {
     let computerMove;
@@ -28,9 +29,9 @@ while (keepPlaying===true) {
         return computerMove;
     }
     generateComputerMove(i);
-
+    
     // CALCULATING SCORES
-
+    
     function computerWinsGame () {
         computerGameScore=1;
         playerGameScore=0;
@@ -38,7 +39,7 @@ while (keepPlaying===true) {
         computerWinsScore++;
         playerLossesScore++;
     }
-
+    
     function playerWinsGame () {
         playerGameScore=1;
         computerGameScore=0;
@@ -51,7 +52,7 @@ while (keepPlaying===true) {
         playerDrawsScore++;
     }
     // CALCULATING MOVES AND RESULTS
-
+    
     if (computerMove === "rock" && playerMove === "scissors") {
         computerWinsGame();
     }
@@ -79,11 +80,14 @@ while (keepPlaying===true) {
     if (computerMove === "scissors" && playerMove === "scissors"){
         drawGame();
     }
+ 
+    // CALCULATING RESULTS 
+
     function getGameWinner (computerGameScore, playerGameScore) {
         if (computerGameScore > playerGameScore) {
             return "Computer wins this game";
         } else if (playerGameScore > computerGameScore) {
-            return "Player wins this game";
+            return "You win this game";
         } else {
             return "Draw";
         }
@@ -92,21 +96,15 @@ while (keepPlaying===true) {
         if (computerTotalScore > playerTotalScore) {
             return "Computer wins";
         } else if (playerTotalScore > computerTotalScore) {
-            return "Player wins";
+            return "You win";
         } else {
             return "Draw";
         }
     }
-
-    console.log (`Computer chose ${computerMove}, player chose ${playerMove}, scores are ${computerGameScore} v ${playerGameScore}`);
-    
-    // CALCULATING RESULTS 
     result = getGameWinner (computerGameScore, playerGameScore);
     overallResult = getWinner (computerTotalScore, playerTotalScore);
     gamesPlayed++;
-    console.log (gamesPlayed);
-    alert (`This game: ${result} \r \r TOTALS \r You: Won:${playerWinsScore} Drawn:${playerDrawsScore} Lost:${playerLossesScore} \r COMPUTER: Won:${computerWinsScore} Drawn:${computerDrawsScore} Lost:${computerLossesScore}`);
-  //  alert (`You score: ${playerGameScore}! Total Scores: You = ${playerGameScore} Computer = ${computerGameScore}`);
+    alert (`${playerMove} v ${computerMove} \r${result} \r \rTOTALS \rYou:Won:${playerWinsScore} Drawn:${playerDrawsScore} Lost:${playerLossesScore} \r Computer:Won:${computerWinsScore} Drawn:${computerDrawsScore} Lost:${computerLossesScore}`);
     keepPlaying = confirm (`Carry on playing?`);
 }
-alert (`${overallResult} \r GAME OVER`);
+alert (`Games played: ${gamesPlayed}\rGames won: You ${playerTotalScore} v Computer ${computerTotalScore} \rGames drawn ${playerDrawsScore} \rEnd Result ${overallResult}! \r\rGAME OVER`);
