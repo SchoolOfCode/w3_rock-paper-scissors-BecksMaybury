@@ -5,5 +5,49 @@
     <link rel="stylesheet" href="styles.css" />
     <title>Rock, Paper, Scissors</title>
   </head>
-  <body></body>
+  <body>
+    <main>
+      <header>
+        <h1>Play rock, paper, scissors! </h1>
+          <input type="text" maxlength="10" placeholder = "Enter Your Name" id="userNameText">
+          </input>
+         <button id="storeUserName"> Save Name</button>
+         <p> click the icon to choose your move</p>
+      </header>
+      <section>
+        <span><img class="image-selected" onclick="rockClick()" src="images/rock.png"></span>
+        <span><img class="image-selected" onclick="paperClick()" src="images/paper.png"></span>
+        <span><img class="image-selected" onclick="scissorsClick()" src="images/scissors.png"></span>
+        <h3 id="movesDisplayText"></h3>
+      </section>
+      <section>
+        <span><img id="player-choice" class="image-chosen" src="images/question.png"></span>
+        <span> <img class="image-chosen" src="images/versus.png"></span>
+        <span><img id ="computer-choice"  class="image-chosen" src="images/question.png"></span>
+      </section>
+      <section class="winner-title">
+        <h2>This round: <span id="winner"></span></h2>
+      </section>
+      <h3>Games played: <span id="gamesPlayed" class="gamesTotal">0</span></h3>
+      <section>
+        <span id=playerScores class="score-heading">Player</span>
+        <span>wins <span id="playerWins">0</span> </span>
+        <span>losses <span id="playerLosses">0</span> </span>
+        <span>draws <span id="playerDraws">0</span> </span>
+      </section>
+      <section>
+        <span class="score-heading">Computer</span>
+        <span>wins <span: id="computerWins">0</span:> </span>
+        <span>losses <span id="computerLosses">0</span> </span>
+        <span>draws <span id = "computerDraws">0</span> </span>
+      </section>
+      <section>
+        <h3> Overall Result: <span id = "overallWinner"></span></h3>
+        <button onClick="reloadPage()"> Restart Game</button>
+      </section>
+    </main>
+    <footer>
+    </footer>
+   <script src="main.js"></script> </script>
+  </body>
 </html>
