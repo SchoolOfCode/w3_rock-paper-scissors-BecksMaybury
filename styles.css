@@ -7,27 +7,13 @@ body {
     text-align:center;
     width:100%;
 }
-.winner-title {
-    color: rgb(0, 60, 255);
-    font-weight: bold;
-    size: 100%;
-}
-.score-heading {
-    color: rgb(0, 60, 255);
-    font-weight: bold;
-}
-#overallWinner{
-    color: rgb(0, 60, 255);
-    font-weight: bold;
-    font-size:120%
-}
-button {
-    color: rgb(0, 60, 255);
-    font-weight: bold;
-}
+
+/* IMAGE SELECTION */
+
 .image-selected:hover {
 transform: scale(1.3);
 }
+
 .image-selected {
     width: 12%;
     padding: 2%;
@@ -37,4 +23,23 @@ transform: scale(1.3);
     width:8%;
     padding: 2%;
     margin-top: -2%;
+}
+
+.winner-title {
+    color: rgb(0, 60, 255);
+    font-weight: bold;
+    size: 100%;
+}
+.score-heading {
+    color: rgb(0, 60, 255);
+    font-weight: bold;
+}
+#overallWinner {
+    color: rgb(0, 60, 255);
+    font-weight: bold;
+    font-size:120%
+}
+button {
+    color: rgb(0, 60, 255);
+    font-weight: bold;
 }

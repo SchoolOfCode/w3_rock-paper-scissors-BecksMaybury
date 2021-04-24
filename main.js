@@ -47,15 +47,11 @@ function generateComputerMove (i){
 function displayComputerMove (){
     let randomImage = document.getElementById("computer-choice");
     randomImage.src=`images/${computerMove}.png`;
-    let randomImageClass = "random-"+computerMove;
-    randomImage.classList.add(randomImageClass);
 }
 
 function displayPlayerMove(){
     let playerImage = document.getElementById("player-choice");
     playerImage.src=`images/${playerMove}.png`;
-    let playerImageClass = "playerChoiceImage";
-    playerImage.classList.add(playerImageClass);
 }
 
 function displayMovesText(){
