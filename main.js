@@ -1,4 +1,4 @@
-//INITIALISE VARIABLES
+//GAME VARIABLES
 
 let gamesPlayed = 0;
 let playerWinsScore = 0;
@@ -12,99 +12,168 @@ let computerTotalScore = 0;
 let computerMovesArray = ["rock", "paper", "scissors"];
 let i;
 let keepPlaying=true;
-let result;
-let overallResult;
+let overallResult = "(play game to see result)";
+let validatedUserName = "Player";
+let movesDisplay;
 
-while (keepPlaying===true) {
-    let computerMove;
-    let playerMove = prompt ("player move: enter rock, paper, scissors");
-    let playerGameScore = 0;
-    let computerGameScore = 0;
-    
-    // GENERATING COMPUTER MOVE
+//DOM VARIABLES
 
-    function generateComputerMove (i){
-        i=Math.floor(Math.random()*3);
-        computerMove = computerMovesArray[i];
-        return computerMove;
-    }
-    generateComputerMove(i);
-    
-    // CALCULATING SCORES
-    
-    function computerWinsGame () {
-        computerGameScore=1;
-        playerGameScore=0;
-        computerTotalScore++;
-        computerWinsScore++;
-        playerLossesScore++;
-    }
-    
-    function playerWinsGame () {
-        playerGameScore=1;
-        computerGameScore=0;
-        playerWinsScore++;  
-        playerTotalScore++;      
-        computerLossesScore++;
-    }
-    function drawGame () {
-        computerDrawsScore++;
-        playerDrawsScore++;
-    }
-    // CALCULATING MOVES AND RESULTS
-    
-    if (computerMove === "rock" && playerMove === "scissors") {
-        computerWinsGame();
-    }
-    if (computerMove === "rock" && playerMove === "paper") {
-        playerWinsGame();
-    }
-    if (computerMove === "rock" && playerMove === "rock"){
-        drawGame();
-    }
-    if (computerMove === "paper" && playerMove === "scissors") {
-        playerWinsGame();
-    }
-    if (computerMove === "paper" && playerMove === "rock") {
-        computerWinsGame();
-    }
-    if (computerMove === "paper" && playerMove === "paper"){
-        drawGame();
-    }
-    if (computerMove === "scissors" && playerMove === "paper") {
-        computerWinsGame();
-    }
-    if (computerMove === "scissors" && playerMove === "rock") {
-        playerWinsGame();
-    }
-    if (computerMove === "scissors" && playerMove === "scissors"){
-        drawGame();
-    }
- 
-    // CALCULATING RESULTS 
+let displayUserName = document.getElementById(playerScores);
+storeUserName.addEventListener ("click", getUserName);
+let result = document.getElementById("winner");
 
-    function getGameWinner (computerGameScore, playerGameScore) {
-        if (computerGameScore > playerGameScore) {
-            return "Computer wins this game";
-        } else if (playerGameScore > computerGameScore) {
-            return "You win this game";
-        } else {
-            return "Draw";
-        }
-    }
-    function getWinner (computerTotalScore, playerTotalScore) {
-        if (computerTotalScore > playerTotalScore) {
-            return "Computer wins";
-        } else if (playerTotalScore > computerTotalScore) {
-            return "You win";
-        } else {
-            return "Draw";
-        }
-    }
-    result = getGameWinner (computerGameScore, playerGameScore);
-    overallResult = getWinner (computerTotalScore, playerTotalScore);
-    gamesPlayed++;
-    alert (`${playerMove} v ${computerMove} \r${result} \r \rTOTALS \rYou:Won:${playerWinsScore} Drawn:${playerDrawsScore} Lost:${playerLossesScore} \r Computer:Won:${computerWinsScore} Drawn:${computerDrawsScore} Lost:${computerLossesScore}`);
-    keepPlaying = confirm (`Carry on playing?`);
+// GAME FUNCTIONS
+
+// Player name input
+function getUserName(){
+    let userName = document.getElementById("userNameText").value;
+    userName = userName.toLowerCase();
+    let userNameFirstLetter = userName[0];
+    userNameFirstLetter = userNameFirstLetter.toUpperCase();
+    userName = userName.substring(1);
+    validatedUserName = userNameFirstLetter + userName;
+    playerScores.innerText = validatedUserName;
 }
-alert (`Games played: ${gamesPlayed}\rGames won: You ${playerTotalScore} v Computer ${computerTotalScore} \rGames drawn ${playerDrawsScore} \rEnd Result ${overallResult}! \r\rGAME OVER`);
+
+// Generate computer moves
+function generateComputerMove (i){
+    i=Math.floor(Math.random()*3);
+    computerMove = computerMovesArray[i];
+    return computerMove;
+}
+
+// Set images for moves
+
+function displayComputerMove (){
+    let randomImage = document.getElementById("computer-choice");
+    randomImage.src=`images/${computerMove}.png`;
+    let randomImageClass = "random-"+computerMove;
+    randomImage.classList.add(randomImageClass);
+}
+
+function displayPlayerMove(){
+    let playerImage = document.getElementById("player-choice");
+    playerImage.src=`images/${playerMove}.png`;
+    let playerImageClass = "playerChoiceImage";
+    playerImage.classList.add(playerImageClass);
+}
+
+function displayMovesText(){
+    let movesDisplay = document.getElementById("movesDisplayText");
+    movesDisplay.innerText = `${playerMove} v ${computerMove}`;
+}
+
+// Scores calculations
+
+function computerWinsGame () {
+    computerGameScore=1;
+    playerGameScore=0;
+    computerTotalScore++;
+    computerWinsScore++;
+    playerLossesScore++;
+    result.innerText = "Computer wins!";
+}
+function playerWinsGame () {
+    playerGameScore=1;
+    computerGameScore=0;
+    playerWinsScore++;  
+    playerTotalScore++;      
+    computerLossesScore++;
+    result.innerText = `${validatedUserName} wins!`;
+}
+function drawGame () {
+    computerDrawsScore++;
+    playerDrawsScore++;
+    result.innerText = "Draw";
+}
+function getWinner () {
+    if (computerTotalScore > playerTotalScore) {
+        return overallResult = "Computer wins";
+    } else if (playerTotalScore > computerTotalScore) {
+        return overallResult = `${validatedUserName} wins`;
+    } else {
+        return overallResult = "Draw";
+    }
+}
+    function updateScoresTable(){
+        gamesPlayed++;
+        let gamesTotal = document.getElementById("gamesPlayed");
+        gamesTotal.innerText = gamesPlayed;
+        let playerWins = document.getElementById("playerWins");
+        playerWins.innerText = playerWinsScore;
+        let playerLosses = document.getElementById("playerLosses");
+        playerLosses.innerText = playerLossesScore;
+        let playerDraws = document.getElementById("playerDraws");
+        playerDraws.innerText = playerDrawsScore;
+        let computerWins = document.getElementById("computerWins");
+        computerWins.innerText = computerWinsScore;
+        let computerLosses = document.getElementById("computerLosses");
+        computerLosses.innerText = computerLossesScore;
+        let computerDraws = document.getElementById("computerDraws");
+        computerDraws.innerText = computerDrawsScore; 
+        let overallWinner = document.getElementById("overallWinner");
+        getWinner();
+        overallWinner.innerText = overallResult;
+    }
+    
+// Choose player move, compare and set game winner
+
+function rockClick (){
+    playerMove = "rock";
+    displayPlayerMove();
+    generateComputerMove(i);
+    displayComputerMove();
+    displayMovesText();
+    if (computerMove === "paper") {
+        computerWinsGame();
+    }
+    else if (computerMove === "scissors") {
+        playerWinsGame();
+    }
+    else {
+        drawGame();
+    }
+    updateScoresTable();
+}
+
+function paperClick (){
+    playerMove = "paper";
+    displayPlayerMove();
+    generateComputerMove(i);
+    displayComputerMove();
+    displayMovesText();
+    if (computerMove === "scissors") {
+        computerWinsGame();
+    }
+    else if (computerMove === "rock") {
+        playerWinsGame();
+    }
+    else {
+        drawGame();
+        }
+    updateScoresTable();
+}
+
+function scissorsClick (){
+    playerMove = "scissors";
+    displayPlayerMove();
+    generateComputerMove(i);
+    displayComputerMove();
+    displayMovesText();
+    if (computerMove === "rock") {
+        computerWinsGame();
+    }
+    else if (computerMove === "paper") {
+        playerWinsGame();
+    }
+    else {
+        drawGame();
+        }
+        updateScoresTable();
+    }
+
+// Restart game
+
+function reloadPage(){
+    window.location.reload()
+}
